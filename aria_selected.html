@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>My Website</title>
+</head>
+<body>
+    
+  <ul role="tablist">
+    <li role="tab" id="tab1" aria-selected="true" tabindex="0">Tab 1</li>
+    <li role="tab" id="tab2" aria-selected="false" tabindex="0">Tab 2</li>
+    <li role="tab" id="tab3" aria-selected="false" tabindex="0">Tab 3</li>
+  </ul>
+  
+  <div id="panel1" role="tabpanel">Content for Tab 1</div>
+  <div id="panel2" role="tabpanel" style="display:none;">Content for Tab 2</div>
+  <div id="panel3" role="tabpanel" style="display:none;">Content for Tab 3</div>
+  
+  
+</body>
+</html>
+
+
+<script>
+  const tabs = document.querySelectorAll('[role="tab"]');
+  
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      // Reset aria-selected for all tabs
+      tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+  
+      // Set aria-selected for the clicked tab
+      this.setAttribute('aria-selected', 'true');
+  
+      // Toggle tab panel content
+      document.getElementById('panel1').style.display = this.id === 'tab1' ? 'block' : 'none';
+      document.getElementById('panel2').style.display = this.id === 'tab2' ? 'block' : 'none';
+      document.getElementById('panel3').style.display = this.id === 'tab3' ? 'block' : 'none';
+    });
+  });
+  </script>
